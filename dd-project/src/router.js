@@ -5,7 +5,7 @@ import Authorized from 'components/Authorized';
 function RouterConfig({ history, app }) {
   const IndexPage = dynamic({
     app,
-    models: () => [import('./models/example')],
+    models: () => [import('./models/index')],
     component: () => import('./routes/IndexPage')
   });
   const Login = dynamic({
@@ -25,6 +25,7 @@ function RouterConfig({ history, app }) {
       <div>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/" component={IndexPage} />
         <Authorized name="home" path="/home" component={IndexPage} />
       </div>
     </Router>

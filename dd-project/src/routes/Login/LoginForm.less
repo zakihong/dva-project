@@ -6,25 +6,37 @@
 .login-box {
   width: 100%;
   height: 100%;
-  background: url('assets/overlay.png');
+  background: url('assets/overlay.png') no-repeat center;
+  background-size: 100% 100%;
 }
-
+.formwrap {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .form {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  margin: -160px 0 0 -320px;
-  width: 640px;
-  padding: 36px;
-  text-align: center;
-  input {
-    width: 80%;
+  .formwidth {
+    padding: 10px;
   }
-
+  .formItemflex {
+    display: flex;
+    justify-content: space-around;
+    .signup {
+      color: #77848f;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    button {
+      width: 80px;
+      background: url('assets/button.png') no-repeat center;
+    }
+  }
   .text {
     height: 120px;
     line-height: 120px;
-    font-size: 24px;
+    font-size: 20px;
     color: #77848f;
     text-align: center;
   }
@@ -38,18 +50,6 @@
         margin-right: 16px;
       }
     }
-  }
-  .signup {
-    width: 60%;
-    float: left;
-    padding-left: 10%;
-    color: #77848f;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  button {
-    width: 80px;
-    background: url('assets/button.png') no-repeat center;
   }
 }
 
