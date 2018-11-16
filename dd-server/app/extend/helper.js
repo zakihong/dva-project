@@ -40,23 +40,53 @@ module.exports = {
   pick(obj, arr) {
     return arr.reduce((iter, val) => (val in obj && (iter[val] = obj[val]), iter), {});
   },
-  // unpick(obj, arr) {
-  //   let newObj = {};
-  //   for (key in obj) {
-  //     if (!arr.includes(key)) {
-  //       newObj[key] = obj[key];
-  //     }
-  //   }
-  //   return newObj;
-  // },
-  whereFilter(obj) {
+  whereAndEq(obj) {
     let result = {};
     for (key in obj) {
-      if (obj[key].length) {
+      if (obj[key] !== '' && obj[key] != null && obj[key] != undefined) {
+        result[key] = obj[key];
+      }
+    }
+    return result;
+  },
+  whereAndLike(obj) {
+    let result = {};
+    for (key in obj) {
+      if (obj[key] !== '' && obj[key] != null && obj[key] != undefined) {
         result[key] = {
           $like: `%${obj[key]}%`
         };
       }
+    }
+    return result;
+  },
+  whereOrLike(obj) {
+    let result = {};
+    let filters = this.whereAndLike(obj);
+    if (Object.keys(filters).length) {
+      result = { $or: filters };
+    }
+    return result;
+  },
+  whereStatus(status) {
+    let result = {};
+
+    if (status == undefined || status == null) {
+      status = '';
+    }
+
+    if (!(status == 0 || status == 1 || status === '')) {
+      status = -1; //非正常状态值（0,1）， 设置个数据库中不会存在的值来查询
+    }
+
+    if (status !== '') {
+      result = { status };
+    } else {
+      result = {
+        status: {
+          $in: [0, 1]
+        }
+      };
     }
     return result;
   },
@@ -79,5 +109,19 @@ module.exports = {
         $lte: new Date()
       };
     }
+  },
+  compareDiff(oldValue, newValue) {
+    let result = {
+      oldValue: [],
+      newValue: []
+    };
+
+    for (let key in newValue) {
+      if (newValue[key] != oldValue[key]) {
+        result.oldValue.push(oldValue[key]);
+        result.newValue.push(newValue[key]);
+      }
+    }
+    return result;
   }
 };

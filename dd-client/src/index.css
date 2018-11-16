@@ -2,22 +2,21 @@ html,
 body,
 :global(#root) {
   height: 100%;
-  font-family: '微软雅黑';
+  position: relative;
+  font-family: PingFang SC, Lantinghei SC, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, \\5fae\8f6f\96c5\9ed1, STHeitiSC-Light, simsun, \\5b8b\4f53, WenQuanYi Zen Hei, WenQuanYi Micro Hei, 'sans-serif';
 }
-
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
 body {
   font: 14px/20px 'Microsoft Yahei';
   overflow-y: scroll;
@@ -40,6 +39,7 @@ strong {
 ol,
 ul {
   list-style: none;
+  margin: 0;
 }
 table {
   border-collapse: collapse;
@@ -62,12 +62,8 @@ a {
   clear: both;
 }
 
-body {
-  min-width: 960px;
-}
 .page {
   margin: 0 auto;
-  width: 960px;
 }
 address,
 cite,

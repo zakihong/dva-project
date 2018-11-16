@@ -3,10 +3,10 @@ import { Router, Route } from 'dva/router';
 import dynamic from 'dva/dynamic';
 import Authorized from 'components/Authorized';
 function RouterConfig({ history, app }) {
-  const IndexPage = dynamic({
+  const Home = dynamic({
     app,
     models: () => [import('./models/index')],
-    component: () => import('./routes/IndexPage')
+    component: () => import('./routes/Home')
   });
   const Login = dynamic({
     app,
@@ -25,8 +25,8 @@ function RouterConfig({ history, app }) {
       <div>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/" component={IndexPage} />
-        <Authorized name="home" path="/home" component={IndexPage} />
+        <Route path="/" component={Home} />
+        <Authorized name="home" path="/home" component={Home} />
       </div>
     </Router>
   );

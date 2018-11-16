@@ -2,7 +2,8 @@ export default {
   namespace: 'index',
 
   state: {
-    active: 0
+    active: 0,
+    activeNews: ''
   },
 
   subscriptions: {
@@ -20,6 +21,9 @@ export default {
 
   reducers: {
     switchNav(state, action) {
+      return { ...state, ...action.payload };
+    },
+    showNewsDetail(state, action) {
       return { ...state, ...action.payload };
     }
   }
