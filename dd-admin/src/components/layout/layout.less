@@ -1,0 +1,40 @@
+.silder {
+  width: 224px;
+  background: #fff;
+  overflow: visible;
+  padding-bottom: 24px;
+  height: 100vh;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.01);
+  z-index: 520;
+  color: #999;
+  display: flex;
+  flex-direction: column;
+  .logo {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    overflow: hidden;
+    border-bottom: 1px solid #f4f4f4;
+    img {
+      width: 80px;
+      margin-right: 8px;
+      transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  }
+  .menus {
+    flex: 1;
+    li {
+      margin-top: 0;
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  height: 100vh;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  color: #000;
+}

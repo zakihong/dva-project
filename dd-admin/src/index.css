@@ -1,0 +1,100 @@
+html,
+body,
+:global(#root) {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: PingFang SC, Lantinghei SC, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, \\5fae\8f6f\96c5\9ed1, STHeitiSC-Light, simsun, \\5b8b\4f53, WenQuanYi Zen Hei, WenQuanYi Micro Hei, 'sans-serif';
+}
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font: 14px/20px 'Microsoft Yahei';
+  overflow-y: scroll;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small,
+strong {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*,
+:active,
+:hover {
+  outline: 0 !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}
+a {
+  text-decoration: none;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.page {
+  margin: 0 auto;
+}
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+code,
+kbd,
+pre,
+samp,
+tt {
+  font-family: 'Courier New', Courier, monospace;
+}
+small {
+  font-size: 12px;
+}
+fieldset,
+img {
+  border: none;
+}
+input::-ms-clear {
+  display: none;
+}
+
+:global .mr-20 {
+  margin-right: 20px !important;
+}
+
+:global .mr-30 {
+  margin-right: 30px !important;
+}
