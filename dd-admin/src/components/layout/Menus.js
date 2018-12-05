@@ -1,5 +1,6 @@
 import React from 'react';
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Icon } from 'antd';
+import { Link } from 'dva/router';
 import styles from './layout.less';
 const SubMenu = Menu.SubMenu;
 
@@ -8,16 +9,20 @@ function Menus() {
     <div className={styles.menus}>
       <Menu mode="inline">
         <Menu.Item key="1">
-          <Icon type="pie-chart" />
-          <span>管理平台</span>
+          <Link to={'/'}>
+            <Icon type="pie-chart" />
+            <span>管理平台</span>
+          </Link>
         </Menu.Item>
         <Menu.Item key="2">
           <Icon type="desktop" />
           <span>用户管理</span>
         </Menu.Item>
         <Menu.Item key="3">
-          <Icon type="inbox" />
-          <span>文章管理</span>
+          <Link to={'/articles'}>
+            <Icon type="inbox" />
+            <span>文章管理</span>
+          </Link>
         </Menu.Item>
         <SubMenu
           key="sub1"

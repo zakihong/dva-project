@@ -7,11 +7,16 @@ function RouterConfig({ history, app }) {
     models: () => [import('./models/index')],
     component: () => import('./routes/Home')
   });
-
+  const Articles = dynamic({
+    app,
+    models: () => [import('./models/article')],
+    component: () => import('./routes/Article')
+  });
   return (
     <Router history={history}>
       <div>
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route path="/articles" component={Articles} />
       </div>
     </Router>
   );
