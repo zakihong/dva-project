@@ -1,23 +1,33 @@
 import dva from 'dva';
-import { browserHistory } from 'dva/router';
-import './index.css';
+import createLoading from 'dva-loading';
+import { message } from 'antd';
+import { createLogger } from 'redux-logger';
+import { Logger } from 'utils';
+import { createBrowserHistory } from 'history';
+// message全局配置
+message.config({
+  duration: 5
+});
 
 // 1. Initialize
 const app = dva({
-  history: browserHistory,
+  ...createLoading({ effects: true }),
+  history: createBrowserHistory(),
   onError(error) {
-    console.error('app onError --', error);
-  }
+    /*全局错误处理，需要使用的地方throw new Error()才能catch到*/
+    message.error(error.message, 10);
+    Logger.error(error);
+  },
+  onAction: createLogger()
 });
 
 // 2. Plugins
-// app.use({});
 
-// 3. Model
+// 2. 注册路由表中不包含的Model,全局生效
 app.model(require('./models/app').default);
-console.log(app); // 顶部的 state 数据
-// 4. Router
+
+// 3. Router
 app.router(require('./router').default);
 
-// 5. Start
+// 4. Start
 app.start('#root');

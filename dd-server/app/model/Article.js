@@ -89,6 +89,20 @@ module.exports = app => {
           return this.setDataValue(val, Sequelize.NOW);
         },
         comment: '发布时间'
+      },
+      createdAt: {
+        field: 'created_at',
+        type: DATE,
+        get(val) {
+          let time = this.getDataValue(val);
+          if (time) {
+            time = moment(time).format('YYYY-MM-DD HH:mm:ss');
+          }
+          return time || '';
+        },
+        set(val) {
+          return this.setDataValue(val, Sequelize.NOW);
+        }
       }
     },
     {

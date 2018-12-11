@@ -15,7 +15,7 @@ export default {
   proxy: {
     '/api': {
       changeOrigin: true,
-      target: 'http://172.16.6.101:7001/',
+      target: 'http://172.16.42.205:7001/',
       pathRewrite: { '^/api': '' }
     }
   },
@@ -27,7 +27,8 @@ export default {
     request: `${__dirname}/src/utils/request`,
     config: `${__dirname}/src/utils/config`,
     services: `${__dirname}/src/services`,
-    assets: `${__dirname}/src/assets`
+    assets: `${__dirname}/src/assets`,
+    styles: `${__dirname}/src/styles`
   },
   es5ImcompatibleVersions: true,
   theme: './src/styles/theme.js'

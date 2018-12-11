@@ -1,8 +1,6 @@
 export default {
-  namespace: 'article',
-  state: {
-    login: false
-  },
+  namespace: 'dashboard',
+  state: {},
   subscriptions: {},
   effects: {},
   reducers: {}

@@ -20,7 +20,7 @@ module.exports = appInfo => {
     host: '172.16.42.206',
     password: 'root',
     port: 3306,
-    database: 'ps-teachers',
+    database: 'rrs',
     username: 'root',
     timezone: '+08:00', //东八时区
     logging: true

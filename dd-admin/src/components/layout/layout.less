@@ -1,40 +1,177 @@
-.silder {
-  width: 224px;
-  background: #fff;
-  overflow: visible;
-  padding-bottom: 24px;
-  height: 100vh;
-  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.01);
-  z-index: 520;
-  color: #999;
-  display: flex;
-  flex-direction: column;
-  .logo {
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-    overflow: hidden;
-    border-bottom: 1px solid #f4f4f4;
+@import '../../styles/vars.less';
+.height() {
+  height: @layout-header-height;
+  line-height: @layout-header-height;
+}
+.layout {
+  min-width: 1292px;
+}
+.header {
+  display: block;
+  .height();
+
+  & .logo {
+    float: left;
+    flex: 0 0 @layout-sider-width;
+    width: @layout-sider-width;
+    .height();
+
+    & a {
+      display: inline-block;
+      :global {
+        & .logo-style {
+          color: white;
+          font-size: 23px;
+          float: right;
+        }
+      }
+    }
+    & a,
     img {
-      width: 80px;
-      margin-right: 8px;
-      transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      height: @layout-header-height / 2;
+      line-height: @layout-header-height / 2;
     }
   }
-  .menus {
-    flex: 1;
-    li {
-      margin-top: 0;
+
+  & .menu {
+    float: left;
+    .height();
+  }
+
+  & .profile {
+    .height();
+    float: right;
+
+    :global {
+      .item-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+      }
+      .avatar {
+        //border: 2px solid @primary-color;
+      }
+    }
+  }
+
+  :global {
+    .@{menu-prefix-cls} {
+      &-dark {
+        .@{menu-prefix-cls}-item-selected {
+          background-color: initial;
+        }
+      }
+    }
+  }
+
+  .profile-item {
+    .height();
+    :global {
+      & .@{menu-prefix-cls} {
+        &-submenu-title {
+          .height();
+        }
+        &-vertical {
+          right: 0;
+          left: initial;
+          background-color: @body-background;
+          min-width: 100px;
+          max-height: 360px;
+          overflow: scroll;
+        }
+        &-item {
+          border-bottom: 1px solid @border-color-split;
+          height: inherit;
+          line-height: inherit;
+          padding: 0;
+        }
+        &-item-selected {
+          background-color: @body-background!important;
+        }
+      }
+      .ant-badge {
+        color: @text-color-secondary-dark;
+      }
     }
   }
 }
 
-.main {
-  flex: 1;
-  height: 100vh;
-  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  color: #000;
+.sider {
+  width: @layout-sider-width;
+  background: #ffffff;
+  border-right: 1px solid @border-color-split;
+  :global {
+    .sider-header {
+      .layout-header();
+      width: @layout-sider-width;
+    }
+    .@{menu-prefix-cls} {
+      &-inline {
+        border-right: none;
+        padding-top: @gutter-base * 3;
+      }
+      &-item {
+        & > a {
+          display: inline-block;
+        }
+        & .anticon {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  // padding: @layout-gutter-base;
+
+  :global {
+    @blankH: @gutter-base*17;
+    & .@{layout-prefix-cls} {
+      &-has-sider {
+        background-color: #ffffff;
+        min-height: calc(~'100vh - @{blankH}');
+      }
+    }
+  }
+}
+
+.content {
+  overflow: hidden;
+  :global {
+    .content-header {
+      .layout-header();
+
+      &:after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+    }
+    .content-inner {
+      padding: @layout-gutter-base;
+    }
+    .content-title {
+      float: left;
+      padding: 0;
+      border-bottom: none;
+      text-overflow: ellipsis;
+      max-width: 30em;
+      position: static;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 1.5em;
+      & i {
+        margin-right: @gutter-base;
+      }
+    }
+    .content-btns {
+      float: left;
+      margin-left: @gutter-base * 7;
+    }
+  }
 }
