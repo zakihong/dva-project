@@ -31,7 +31,7 @@ const App = ({ children, app, loading, dispatch, location }) => {
     menus: menus,
     handleClickMenu(menu) {
       dispatch({
-        type: 'switchMenuPopver',
+        type: 'app/switchMenuPopver',
         payload: {
           defaultSelectedKeys: [menu.key],
           selectedKey: [menu.key],
