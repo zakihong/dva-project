@@ -43,11 +43,27 @@ export default {
       }
     ],
     currentMenu: {
-      defaultSelectedKeys: [],
-      selectedKey: []
+      defaultSelectedKeys: ['category'],
+      selectedKey: ['category'],
+      defaultOpenKeys: ['article']
     }
   },
   subscriptions: {},
   effects: {},
-  reducers: {}
+  reducers: {
+    switchMenuPopver(state, action) {
+      console.log(111111);
+      const currentMenu = {
+        ...state.currentMenu,
+        ...action.payload
+      };
+      return {
+        ...state,
+        currentMenu: currentMenu
+      };
+    },
+    handleNavOpenKeys(state) {
+      console.log(state);
+    }
+  }
 };

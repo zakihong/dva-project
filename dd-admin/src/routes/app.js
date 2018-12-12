@@ -28,12 +28,26 @@ const App = ({ children, app, loading, dispatch, location }) => {
 
   const siderProps = {
     currentMenu: currentMenu,
-    menus: menus
+    menus: menus,
+    handleClickMenu(menu) {
+      dispatch({
+        type: 'switchMenuPopver',
+        payload: {
+          defaultSelectedKeys: [menu.key],
+          selectedKey: [menu.key],
+          defaultOpenKeys: menu.keyPath.length > 1 ? menu.keyPath[1] : []
+        }
+      });
+    },
+    changeOpenKeys(openKeys) {
+      dispatch({ type: 'handleNavOpenKeys', openKeys });
+    }
   };
 
   const contentProps = {
     children: children,
-    currentMenu: currentMenu
+    currentMenu: currentMenu,
+    menus: menus
   };
 
   return (
