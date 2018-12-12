@@ -23,7 +23,6 @@ const app = dva({
 
 // 2. Plugins
 
-// 2. 注册路由表中不包含的Model,全局生效
 app.model(require('./models/app').default);
 
 // 3. Router
