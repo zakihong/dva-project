@@ -20,11 +20,11 @@ const Routers = function({ history, app }) {
       models: () => [require('./models/dashboard')],
       component: () => require('./routes/dashboard')
     },
-    {
-      path: '/logs',
-      models: () => [require('./models/logs')],
-      component: () => require('./routes/logs')
-    },
+    // {
+    //   path: '/logs',
+    //   models: () => [require('./models/logs')],
+    //   component: () => require('./routes/logs')
+    // },
     {
       path: '/user',
       models: () => [require('./models/user')],
