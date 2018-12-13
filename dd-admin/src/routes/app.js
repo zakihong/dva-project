@@ -30,12 +30,13 @@ const App = ({ children, app, loading, dispatch, location }) => {
     currentMenu: currentMenu,
     menus: menus,
     handleClickMenu(menu) {
+      console.log(menu.keyPath);
       dispatch({
         type: 'app/switchMenuPopver',
         payload: {
           defaultSelectedKeys: [menu.key],
           selectedKey: [menu.key],
-          defaultOpenKeys: menu.keyPath.length > 1 ? menu.keyPath[1] : []
+          defaultOpenKeys: menu.keyPath.length > 1 ? [menu.keyPath[1]] : []
         }
       });
     },
@@ -47,7 +48,8 @@ const App = ({ children, app, loading, dispatch, location }) => {
   const contentProps = {
     children: children,
     currentMenu: currentMenu,
-    menus: menus
+    menus: menus,
+    location: location
   };
 
   return (

@@ -1,6 +1,5 @@
 import { routerRedux } from 'dva/router';
-import { isLogin } from 'utils';
-import Cookie from 'utils/cookie';
+import { setSen, isLogin } from 'utils';
 import { login } from 'services/login';
 export default {
   namespace: 'login',
@@ -16,10 +15,9 @@ export default {
       const params = { username: payload.username, password: payload.password };
       const data = yield call(login, params);
       if (data) {
-        console.log(1);
-        Cookie.set('user_token', data.token);
-        Cookie.set('user', { username: data.nikename });
-        yield put(routerRedux.push('/home'));
+        setSen('user_token', data.token);
+        setSen('user', { username: data.nikename });
+        yield put(routerRedux.push('/dashboard'));
       }
     }
   },

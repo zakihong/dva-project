@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
-import { routerRedux, Route, Switch, Redirect } from 'dva/router';
+import { routerRedux, Route, Switch } from 'dva/router';
 import dynamic from 'dva/dynamic';
 import App from './routes/app';
 const { ConnectedRouter } = routerRedux;
@@ -11,6 +11,7 @@ const Routers = function({ history, app }) {
 
   const Login = dynamic({
     app,
+    modules: () => [require('./models/login')],
     component: () => require('./routes/login')
   });
 
@@ -20,15 +21,20 @@ const Routers = function({ history, app }) {
       models: () => [require('./models/dashboard')],
       component: () => require('./routes/dashboard')
     },
-    // {
-    //   path: '/logs',
-    //   models: () => [require('./models/logs')],
-    //   component: () => require('./routes/logs')
-    // },
+    {
+      path: '/logs',
+      models: () => [require('./models/logs')],
+      component: () => require('./routes/logs')
+    },
     {
       path: '/user',
       models: () => [require('./models/user')],
       component: () => require('./routes/user')
+    },
+    {
+      path: '/article/category',
+      models: () => [require('./models/article')],
+      component: () => require('./routes/article/category')
     }
   ];
   return (
@@ -49,7 +55,7 @@ const Routers = function({ history, app }) {
               />
             ))}
 
-            <Route exact path="*" render={() => <Redirect to="/dashboard" />} />
+            {/* <Route exact path="*" render={() => <Redirect to="/dashboard" />} /> */}
           </Switch>
         </App>
       </Switch>

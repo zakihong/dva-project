@@ -5,26 +5,28 @@ import { Layout, Breadcrumb, Icon } from 'antd';
 
 import styles from './Layout.less';
 
-const Content = ({ children, currentMenu, menus }) => {
+const Content = ({ children, currentMenu, menus, location }) => {
   let breadSet = [];
-  const getBread = (menus, openKey, current) => {
-    menus.forEach(menu => {
-      if (openKey) {
-        if (menu.key === openKey[0]) {
-          breadSet.push(menu);
-          if (menu.children) {
-            getBread(menu.children, false, current);
-          }
-        }
+
+  const getBread = (menuArray, path) => {
+    menuArray.forEach(menu => {
+      if (path === menu.key) {
+        breadSet.push({ key: menu.key, path: menu.path, icon: menu.icon, title: menu.title });
       } else {
-        if (menu.key === current) {
-          breadSet.push(menu);
+        if (menu.children) {
+          getBread(menu.children, path);
         }
       }
     });
   };
 
-  getBread(menus, currentMenu.defaultOpenKeys, currentMenu.selectedKey[0]);
+  location.pathname
+    .substr(1)
+    .split('/')
+    .forEach(item => {
+      getBread(menus, item);
+    });
+
   const breads = breadSet.map((item, key) => {
     if (item.key !== 'dashboard') {
       return (

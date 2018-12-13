@@ -1,3 +1,5 @@
+import { routerRedux } from 'dva/router';
+import { getSen } from 'utils';
 export default {
   namespace: 'app',
   state: {
@@ -23,7 +25,7 @@ export default {
         children: [
           {
             title: '类别管理',
-            path: 'category',
+            path: 'article/category',
             key: 'category',
             icon: 'switcher'
           }
@@ -43,16 +45,36 @@ export default {
       }
     ],
     currentMenu: {
-      defaultSelectedKeys: ['category'],
-      selectedKey: ['category'],
-      defaultOpenKeys: ['article']
+      defaultSelectedKeys: ['dashboard'],
+      selectedKey: ['dashboard'],
+      defaultOpenKeys: []
     }
   },
-  subscriptions: {},
-  effects: {},
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(({ pathname }) => {
+        if (pathname === '/login' || pathname === '/logout') {
+          return;
+        }
+        dispatch({ type: 'loggedIn' });
+      });
+    }
+  },
+  effects: {
+    *loggedIn({ payload }, { put, select }) {
+      const token = getSen('token');
+      if (!token) {
+        yield put(routerRedux.push({ pathname: '/login' }));
+      }
+
+      yield put({
+        type: 'loginSuccess',
+        payload: { user: { name: getSen('username'), uid: getSen('uid'), email: getSen('email') } }
+      });
+    }
+  },
   reducers: {
     switchMenuPopver(state, action) {
-      console.log(111111);
       const currentMenu = {
         ...state.currentMenu,
         ...action.payload
