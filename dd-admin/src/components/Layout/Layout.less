@@ -142,6 +142,8 @@
 
 .content {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   :global {
     .content-header {
       .layout-header();
@@ -153,7 +155,10 @@
       }
     }
     .content-inner {
-      padding: @layout-gutter-base / 2 @layout-gutter-base;
+      flex: 1;
+      height: 0;
+      overflow: auto;
+      padding: 10px;
     }
     .content-title {
       float: left;

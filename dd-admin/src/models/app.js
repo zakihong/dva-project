@@ -1,45 +1,38 @@
 import { routerRedux } from 'dva/router';
-import { getSen } from 'utils';
+import { isLogin, getSen, setSen } from 'utils';
+import { message } from 'antd';
+import { login } from 'services/login';
 export default {
   namespace: 'app',
   state: {
-    loggedIn: false,
+    login: !!isLogin(),
     user: {
-      name: 'User',
-      email: '',
-      uid: ''
+      name: '',
+      id: ''
     },
     loginLoading: false,
     menus: [
       {
         title: '管理平台',
-        path: 'dashboard',
+        path: '/dashboard',
         key: 'dashboard',
         icon: 'home'
       },
       {
         title: '文章管理',
-        path: 'article',
+        path: '/article',
         key: 'article',
-        icon: 'book',
-        children: [
-          {
-            title: '类别管理',
-            path: 'article/category',
-            key: 'category',
-            icon: 'switcher'
-          }
-        ]
+        icon: 'book'
       },
       {
         title: '用户管理',
-        path: 'user',
+        path: '/user',
         key: 'user',
         icon: 'user'
       },
       {
         title: '日志管理',
-        path: 'logs',
+        path: '/logs',
         key: 'logs',
         icon: 'read'
       }
@@ -62,18 +55,37 @@ export default {
   },
   effects: {
     *loggedIn({ payload }, { put, select }) {
-      const token = getSen('token');
+      const token = getSen('user_token');
       if (!token) {
         yield put(routerRedux.push({ pathname: '/login' }));
       }
 
       yield put({
         type: 'loginSuccess',
-        payload: { user: { name: getSen('username'), uid: getSen('uid'), email: getSen('email') } }
+        payload: { user: { name: getSen('username'), id: getSen('userId') } }
       });
+    },
+    *submit({ payload }, { call, put, select }) {
+      const params = { username: payload.username, password: payload.password };
+      const data = yield call(login, params);
+      if (data.errorMsg) {
+        message.error(data.errorMsg);
+      } else {
+        setSen('user_token', data.token);
+        setSen('username', data.nikename);
+        setSen('userId', data.id);
+        yield put({
+          type: 'loginSuccess',
+          payload: { user: { name: data.nikename, id: data.id } }
+        });
+        yield put(routerRedux.push('/dashboard'));
+      }
     }
   },
   reducers: {
+    loginSuccess(state, action) {
+      return { ...state, ...action.payload, login: true };
+    },
     switchMenuPopver(state, action) {
       const currentMenu = {
         ...state.currentMenu,

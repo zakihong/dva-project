@@ -1,7 +1,7 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
 import { message } from 'antd';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 import { createBrowserHistory } from 'history';
 // message全局配置
 message.config({
@@ -15,8 +15,8 @@ const app = dva({
   onError(error) {
     /*全局错误处理，需要使用的地方throw new Error()才能catch到*/
     message.error(error.message, 10);
-  },
-  onAction: createLogger()
+  }
+  // onAction: createLogger()
 });
 
 // 2. Plugins

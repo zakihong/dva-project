@@ -35,7 +35,7 @@ module.exports = appInfo => {
     all(err, ctx) {}
   };
 
-  config.apihost = 'http://172.16.42.206:7001';
+  config.apihost = 'http://172.16.42.205:7001';
 
   config.cluster = {
     listen: {

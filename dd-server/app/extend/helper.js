@@ -40,6 +40,13 @@ module.exports = {
   pick(obj, arr) {
     return arr.reduce((iter, val) => (val in obj && (iter[val] = obj[val]), iter), {});
   },
+  guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (Math.random() * 16) | 0,
+        v = c == 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  },
   whereAndEq(obj) {
     let result = {};
     for (key in obj) {

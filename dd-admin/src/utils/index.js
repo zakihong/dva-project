@@ -20,6 +20,23 @@ export function getSen(k) {
   return uu;
 }
 
+export function renderQuery(query, payload) {
+  const searchQuery = { ...query, ...payload };
+  for (let key in searchQuery) {
+    if (!searchQuery[key]) {
+      if (key === 'keyword') {
+        delete searchQuery.field;
+      }
+      delete searchQuery[key];
+    }
+  }
+  return searchQuery;
+}
+
 export const isLogin = () => {
   return getSen('user_session');
+};
+
+String.prototype.ucfirst = function() {
+  return this.replace(/( |^)[a-z]/g, L => L.toUpperCase());
 };

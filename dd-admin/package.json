@@ -10,6 +10,7 @@
     "antd": "^3.10.0",
     "babel-plugin-import": "^1.9.1",
     "classnames": "^2.2.6",
+    "draftjs-to-html": "^0.8.4",
     "dva": "^2.4.0",
     "dva-loading": "^2.0.6",
     "js-cookie": "^2.2.0",
@@ -18,9 +19,11 @@
     "rc-queue-anim": "^1.6.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-draft-wysiwyg": "^1.12.13",
     "react-helmet": "^5.2.0",
     "react-slick": "^0.23.2",
     "redux-logger": "^3.0.6",
+    "reflv": "0.0.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

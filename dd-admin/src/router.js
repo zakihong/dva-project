@@ -11,7 +11,6 @@ const Routers = function({ history, app }) {
 
   const Login = dynamic({
     app,
-    modules: () => [require('./models/login')],
     component: () => require('./routes/login')
   });
 
@@ -32,9 +31,14 @@ const Routers = function({ history, app }) {
       component: () => require('./routes/user')
     },
     {
-      path: '/article/category',
+      path: '/article',
       models: () => [require('./models/article')],
-      component: () => require('./routes/article/category')
+      component: () => require('./routes/article')
+    },
+    {
+      path: '/article/create',
+      models: () => [require('./models/article')],
+      component: () => require('./routes/article/create')
     }
   ];
   return (

@@ -14,9 +14,8 @@ module.exports = app => {
     'article',
     {
       id: {
-        type: INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        type: STRING(16),
+        primaryKey: true
       },
       title: {
         type: STRING(50),
@@ -59,6 +58,7 @@ module.exports = app => {
         comment: '文章作者'
       },
       viewCount: {
+        field: 'view-count',
         type: INTEGER,
         comment: '文章查看次数'
       },
@@ -68,6 +68,7 @@ module.exports = app => {
         comment: '发布状态：1未发布 | 2已试用 | 3已发布 | 4已下架'
       },
       categoryId: {
+        field: 'category-id',
         type: INTEGER,
         validate: {
           notEmpty: true
@@ -89,24 +90,11 @@ module.exports = app => {
           return this.setDataValue(val, Sequelize.NOW);
         },
         comment: '发布时间'
-      },
-      createdAt: {
-        field: 'created_at',
-        type: DATE,
-        get(val) {
-          let time = this.getDataValue(val);
-          if (time) {
-            time = moment(time).format('YYYY-MM-DD HH:mm:ss');
-          }
-          return time || '';
-        },
-        set(val) {
-          return this.setDataValue(val, Sequelize.NOW);
-        }
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      timestamps: false
     }
   );
 

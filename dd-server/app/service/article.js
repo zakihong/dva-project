@@ -1,21 +1,34 @@
 const Service = require('egg').Service;
 
 class ArticleService extends Service {
-  async getArticles({ pageSize = this.app.config.pageSize, pageNum = 1, status } = {}) {
-    let result = { count: 0, rows: [] };
+  async getArticles({ pageSize = this.app.config.pageSize, page = 1, title } = {}) {
     pageSize = Number.parseInt(pageSize);
-    pageNum = Number.parseInt(pageNum);
+    page = Number.parseInt(page);
 
     let articles = await this.ctx.model.Article.findAndCountAll({
-      offset: pageSize * (pageNum - 1),
+      offset: pageSize * (page - 1),
       limit: pageSize,
       where: {
+        ...this.ctx.helper.whereAndLike({ title }),
         status: 1
       }
     });
-    result.count = articles.count;
 
-    return result;
+    return articles;
+  }
+
+  async addArticle({ title, descption, content, pic, categoryId }) {
+    let article = await this.ctx.model.Article.create({
+      id: this.ctx.helper.guid(),
+      title,
+      descption,
+      content,
+      pic,
+      categoryId,
+      author: '可乐三块五',
+      status: 1
+    });
+    return { result: article };
   }
 }
 
