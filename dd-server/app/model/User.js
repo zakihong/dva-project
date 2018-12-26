@@ -41,6 +41,11 @@ module.exports = app => {
         allowNull: true,
         comment: '昵称'
       },
+      status: {
+        type: INTEGER,
+        defaultValue: '1',
+        comment: ''
+      },
       createdAt: {
         field: 'created_at',
         type: DATE,

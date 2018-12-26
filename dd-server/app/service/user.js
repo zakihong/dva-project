@@ -11,6 +11,7 @@ class UserService extends Service {
       order: [['createdAt', 'DESC']],
       where: {
         ...this.ctx.helper.whereAndLike({ nikename: username }),
+        status: 1,
         id: {
           $notIn: [userId]
         }
@@ -39,6 +40,11 @@ class UserService extends Service {
       nikename
     });
     return { result: user };
+  }
+
+  async delUser(id) {
+    let result = await this.ctx.model.User.update({ status: 2 }, { where: { id } });
+    return { length: result[0] };
   }
 }
 

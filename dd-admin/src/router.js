@@ -31,7 +31,7 @@ const Routers = function({ history, app }) {
       component: () => require('./routes/user')
     },
     {
-      path: '/article',
+      path: '/article/list',
       models: () => [require('./models/article')],
       component: () => require('./routes/article')
     },
@@ -39,6 +39,11 @@ const Routers = function({ history, app }) {
       path: '/article/create',
       models: () => [require('./models/article')],
       component: () => require('./routes/article/create')
+    },
+    {
+      path: '/article/category',
+      models: () => [require('./models/category')],
+      component: () => require('./routes/article/category')
     }
   ];
   return (

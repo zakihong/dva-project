@@ -4,7 +4,7 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
 import styles from './Layout.less';
 const SubMenu = Menu.SubMenu;
-const Sider = ({ currentMenu, menus, handleClickMenu, changeOpenKeys }) => {
+const Sider = ({ currentMenu, menus }) => {
   const makeItem = item => {
     return (
       <Menu.Item key={item.key}>
@@ -15,7 +15,7 @@ const Sider = ({ currentMenu, menus, handleClickMenu, changeOpenKeys }) => {
   };
   return (
     <Layout.Sider className={styles.sider} width={220}>
-      <Menu mode="inline" className="sider-container" defaultSelectedKeys={currentMenu.defaultSelectedKeys} defaultOpenKeys={currentMenu.defaultOpenKeys} onClick={handleClickMenu}>
+      <Menu mode="inline" className="sider-container" defaultSelectedKeys={currentMenu.defaultSelectedKeys} defaultOpenKeys={currentMenu.defaultOpenKeys}>
         {menus.map((item, index) => {
           if (item.children && Array.isArray(item.children)) {
             return (

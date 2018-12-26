@@ -20,9 +20,23 @@ export default {
       },
       {
         title: '文章管理',
-        path: '/article',
+        path: '',
         key: 'article',
-        icon: 'book'
+        icon: 'switcher',
+        children: [
+          {
+            title: '文章列表',
+            path: '/article/list',
+            key: 'list',
+            icon: 'book'
+          },
+          {
+            title: '类别管理',
+            path: '/article/category',
+            key: 'category',
+            icon: 'heart'
+          }
+        ]
       },
       {
         title: '用户管理',
@@ -49,6 +63,23 @@ export default {
         if (pathname === '/login' || pathname === '/logout') {
           return;
         }
+        let paths = pathname.split('/').filter(e => {
+          return e !== '';
+        });
+        let lastPath = paths.filter((e, i) => {
+          return i === paths.length - 1;
+        });
+        if (paths.length) {
+          paths.pop();
+        }
+        dispatch({
+          type: 'initCurrentMenu',
+          payload: {
+            defaultSelectedKeys: lastPath,
+            selectedKey: lastPath,
+            defaultOpenKeys: paths
+          }
+        });
         dispatch({ type: 'loggedIn' });
       });
     }
@@ -94,6 +125,12 @@ export default {
       return {
         ...state,
         currentMenu: currentMenu
+      };
+    },
+    initCurrentMenu(state, action) {
+      return {
+        ...state,
+        currentMenu: action.payload
       };
     },
     handleNavOpenKeys(state) {

@@ -11,13 +11,23 @@ class ArticleService extends Service {
       where: {
         ...this.ctx.helper.whereAndLike({ title }),
         status: 1
-      }
+      },
+      include: [
+        {
+          model: this.ctx.app.model.User,
+          as: 'user'
+        },
+        {
+          model: this.ctx.app.model.Category,
+          as: 'category'
+        }
+      ]
     });
 
     return articles;
   }
 
-  async addArticle({ title, descption, content, pic, categoryId }) {
+  async addArticle({ title, descption, content, pic, categoryId, author }) {
     let article = await this.ctx.model.Article.create({
       id: this.ctx.helper.guid(),
       title,
@@ -25,10 +35,15 @@ class ArticleService extends Service {
       content,
       pic,
       categoryId,
-      author: '可乐三块五',
+      author,
       status: 1
     });
     return { result: article };
+  }
+
+  async delArticle(id) {
+    let result = await this.ctx.model.Article.update({ status: 2 }, { where: { id } });
+    return { length: result[0] };
   }
 }
 

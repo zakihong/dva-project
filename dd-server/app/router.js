@@ -15,7 +15,11 @@ module.exports = app => {
   //上传头像
   router.post('/upload/user', controller.file.uploadUserHead);
   //文章
-  router.resources('article', '/article', controller.article); //产品添删改查
+  router.resources('article', '/article', controller.article);
+  //文章类别
+  router.resources('category', '/category', controller.category);
+  //获取所有文章类别
+  router.get('category', '/categorys', controller.category.getCategorys);
   //上传图片
   router.post('/upload/editor', controller.file.uploadEditorImg);
 

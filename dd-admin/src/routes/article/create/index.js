@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
-import { Spin } from 'antd';
 import CreateForm from './CreateForm';
 import styles from './index.less';
 
-function CreateArticle({ dispatch, editorState, imageUrl, previewVisible, previewImage }) {
+function CreateArticle({ dispatch, editorState, imageUrl, categorys }) {
   const createArticleProps = {
     editorState,
+    categorys,
     imageUrl,
     onOk(data) {
       dispatch({ type: 'article/submit', payload: { data } });
@@ -35,12 +35,13 @@ CreateArticle.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { editorState, imageUrl, previewVisible, previewImage } = state.article;
+  const { editorState, imageUrl, previewVisible, previewImage, categorys } = state.article;
   return {
     editorState,
     imageUrl,
     previewVisible,
-    previewImage
+    previewImage,
+    categorys
   };
 }
 

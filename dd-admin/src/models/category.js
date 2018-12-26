@@ -1,20 +1,19 @@
-import { query, create, deluser } from 'services/user';
+import { query, create, delcategory } from 'services/category';
 import { message } from 'antd';
 export default {
-  namespace: 'user',
+  namespace: 'category',
   state: {
     list: [],
     total: null,
     page: null,
     visible: false,
     confirmLoading: false,
-    imageUrl: '',
     title: ''
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => {
-        if (pathname === '/user') {
+        if (pathname === '/article/category') {
           dispatch({ type: 'fetch', payload: {} });
         }
       });
@@ -23,12 +22,11 @@ export default {
   effects: {
     *fetch(
       {
-        payload: { page = 1, username = '' }
+        payload: { page = 1, name = '' }
       },
-      { call, put, select }
+      { call, put }
     ) {
-      const app = yield select(state => state.app);
-      const data = yield call(query, { page, userId: app.user.id, username });
+      const data = yield call(query, { page, name });
       yield put({
         type: 'save',
         payload: {
@@ -37,16 +35,8 @@ export default {
           page: parseInt(page, 10)
         }
       });
-      yield put({ type: 'search', payload: { title: username } });
+      yield put({ type: 'search', payload: { title: name } });
       yield put({ type: 'save', payload: { list: data.rows, total: data.count, page: parseInt(page, 10) } });
-    },
-    *delete({ payload }, { call, put }) {
-      const data = yield call(deluser, payload.id);
-      if (data.errorMsg) {
-        message.error(data.errorMsg);
-      } else {
-        yield put({ type: 'fetch', payload: {} });
-      }
     },
     *create({ payload }, { call, put }) {
       const data = yield call(create, payload.data);
@@ -54,7 +44,14 @@ export default {
         message.error(data.errorMsg);
       } else {
         yield put({ type: 'show', payload: { visible: false } });
-        yield put({ type: 'headPortrait', payload: { imageUrl: '' } });
+        yield put({ type: 'fetch', payload: {} });
+      }
+    },
+    *delete({ payload }, { call, put }) {
+      const data = yield call(delcategory, payload.id);
+      if (data.errorMsg) {
+        message.error(data.errorMsg);
+      } else {
         yield put({ type: 'fetch', payload: {} });
       }
     }
@@ -83,14 +80,6 @@ export default {
       }
     ) {
       return { ...state, visible };
-    },
-    headPortrait(
-      state,
-      {
-        payload: { imageUrl }
-      }
-    ) {
-      return { ...state, imageUrl };
     }
   }
 };

@@ -13,7 +13,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const { TextArea } = Input;
 
-const CreateForm = ({ onOk, onEditorChange, onUploadChange, onPreviewChange, imageUrl, previewVisible, previewImage, editorState, form: { getFieldDecorator, validateFields } }) => {
+const CreateForm = ({ onOk, onEditorChange, onUploadChange, categorys, imageUrl, previewVisible, previewImage, editorState, form: { getFieldDecorator, validateFields } }) => {
   const formItemMax = {
     labelCol: { xs: { span: 2 }, sm: { span: 2 } },
     wrapperCol: { xs: { span: 16 }, sm: { span: 16 } }
@@ -90,7 +90,7 @@ const CreateForm = ({ onOk, onEditorChange, onUploadChange, onPreviewChange, ima
   function handleOk(e) {
     e.preventDefault();
     validateFields((errors, values) => {
-      console.log(typeof draftToHtml(convertToRaw(editorState.getCurrentContent())));
+      // console.log(typeof draftToHtml(convertToRaw(editorState.getCurrentContent())));
       if (errors) {
         return;
       }
@@ -105,19 +105,6 @@ const CreateForm = ({ onOk, onEditorChange, onUploadChange, onPreviewChange, ima
       <div className="ant-upload-text">Upload</div>
     </div>
   );
-
-  // const handlePreview = file => {
-  //   onPreviewChange({
-  //     previewImage: file.url || file.thumbUrl,
-  //     previewVisible: true
-  //   });
-  // };
-
-  // function getBase64(img, callback) {
-  //   const reader = new FileReader();
-  //   reader.addEventListener('load', () => callback(reader.result));
-  //   reader.readAsDataURL(img);
-  // }
 
   const handleChange = info => {
     if (info.file.status === 'done') {
@@ -137,11 +124,15 @@ const CreateForm = ({ onOk, onEditorChange, onUploadChange, onPreviewChange, ima
         {getFieldDecorator('title', { rules: [{ required: true, message: '请填写文章标题' }], initialValue: '' })(<Input />)}
       </FormItem>
       <FormItem {...formSelectSmall} label="文章类别" hasFeedback>
-        {getFieldDecorator('categoryId', { rules: [{ required: true, message: '请选择文章类型' }], initialValue: '1' })(
+        {getFieldDecorator('categoryId', { rules: [{ required: true, message: '请选择文章类型' }] })(
           <Select>
-            <Option value="1">WEB前端</Option>
-            <Option value="2">NODE JS</Option>
-            <Option value="3">读书感悟</Option>
+            {categorys.map(category => {
+              return (
+                <Option key={category.id} value={category.id}>
+                  {category.name}
+                </Option>
+              );
+            })}
           </Select>
         )}
       </FormItem>
@@ -179,6 +170,7 @@ CreateForm.propTypes = {
   onUploadChange: PropTypes.func.isRequired,
   onPreviewChange: PropTypes.func.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  categorys: PropTypes.array.isRequired,
   editorState: PropTypes.object.isRequired
 };
 

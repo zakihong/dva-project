@@ -1,0 +1,28 @@
+.category {
+  min-height: calc(100vh - 184px);
+  .category-header {
+    height: 39px;
+    margin-bottom: 16px;
+  }
+  .category-content {
+  }
+}
+@row-height: 43px;
+.list {
+  border: 1px solid #e6ebef;
+  &-header {
+    height: @row-height;
+    background: #f5f6fb;
+  }
+  &-container {
+    height: auto;
+  }
+  &-footer {
+    height: 58px;
+  }
+  .row-height {
+    height: @row-height;
+    line-height: @row-height;
+    padding: 0 5px;
+  }
+}

@@ -14,7 +14,6 @@ const { Footer } = LayoutComponent;
 
 const App = ({ children, app, loading, dispatch, location }) => {
   const { user, currentMenu, menus } = app;
-
   if (!loading) {
     NProgress.done();
   }
@@ -28,21 +27,7 @@ const App = ({ children, app, loading, dispatch, location }) => {
 
   const siderProps = {
     currentMenu: currentMenu,
-    menus: menus,
-    handleClickMenu(menu) {
-      console.log(menu.keyPath);
-      dispatch({
-        type: 'app/switchMenuPopver',
-        payload: {
-          defaultSelectedKeys: [menu.key],
-          selectedKey: [menu.key],
-          defaultOpenKeys: menu.keyPath.length > 1 ? [menu.keyPath[1]] : []
-        }
-      });
-    },
-    changeOpenKeys(openKeys) {
-      dispatch({ type: 'handleNavOpenKeys', openKeys });
-    }
+    menus: menus
   };
 
   const contentProps = {

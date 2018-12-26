@@ -16,7 +16,12 @@ module.exports = app => {
   });
 
   app.on('server', server => {
+    const Article = app.model.Article;
+    const Category = app.model.Category;
+    const User = app.model.User;
     app.beforeStart(async () => {
+      Article.belongsTo(User, { as: 'user', foreignKey: 'author' });
+      Article.belongsTo(Category, { as: 'category', foreignKey: 'categoryId' });
       await app.model.sync();
     });
   });

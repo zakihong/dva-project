@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Input, Button, Table } from 'antd';
+import { Input, Button, Table, Popconfirm } from 'antd';
 
 import styles from './index.less';
 const Search = Input.Search;
 function Article({ dispatch, list, loading, total, page, title, selectedRowKeys }) {
-  function deleteHandler(id) {}
+  function deleteHandler(id) {
+    dispatch({ type: 'article/delete', payload: { id } });
+  }
   const columns = [
     {
       title: '标题',
@@ -15,8 +17,13 @@ function Article({ dispatch, list, loading, total, page, title, selectedRowKeys 
     },
     {
       title: '作者',
-      key: 'author',
-      dataIndex: 'author'
+      key: 'user',
+      dataIndex: 'user.nikename'
+    },
+    {
+      title: '类别',
+      key: 'category.name',
+      dataIndex: 'category.name'
     },
     {
       title: '简述',
@@ -24,18 +31,13 @@ function Article({ dispatch, list, loading, total, page, title, selectedRowKeys 
       dataIndex: 'descption'
     },
     {
-      title: '状态',
-      key: 'status',
-      dataIndex: 'status'
-    },
-    {
       title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <a href="" onClick={deleteHandler.bind(null, record.id)}>
-            删除
-          </a>
+          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
+            <a href="">删除</a>
+          </Popconfirm>
         </span>
       )
     }

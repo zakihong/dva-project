@@ -17,6 +17,16 @@ class ArticleController extends Controller {
       this.ctx.fail(msg);
     }
   }
+
+  //删除数据 delete
+  async destroy() {
+    const { length = 0, msg = '文章不存在！' } = await this.ctx.service.article.delArticle(this.ctx.params.id);
+    if (length) {
+      this.ctx.success({ status: 1 });
+    } else {
+      this.ctx.fail(msg);
+    }
+  }
 }
 
 module.exports = ArticleController;

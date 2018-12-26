@@ -20,7 +20,9 @@ function User({ dispatch, list, loading, total, page, visible, confirmLoading, i
     }
   };
 
-  function deleteHandler(id) {}
+  function deleteHandler(id) {
+    dispatch({ type: 'user/delete', payload: { id } });
+  }
 
   function pageChangeHandler(page) {
     dispatch({ type: 'user/fetch', payload: { page, username: title } });
