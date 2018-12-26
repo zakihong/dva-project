@@ -40,7 +40,7 @@ npm install
 npm run start
 
 ### 服务端
-cd dd-service
+cd dd-server
 npm install
 npm run dev
 
@@ -49,3 +49,58 @@ cd dd-client
 npm install
 npm run start
 
+## 项目文件目录结构
+
+    ├─dd-admin              
+    │      └─public
+    |      └─src
+    |         └─assets
+    |         └─components
+    |         └─models
+    |         └─routes
+    |         └─services
+    |         └─styles
+    |         └─utils
+    |         └─template
+    |         index.js
+    |         router.js
+    |         index.css
+    │      .webpackrc.js 
+    │      .roadhogrc.mock.js     
+    │
+    ├─dd-client
+    │      └─public
+    |      └─src
+    |         └─assets
+    |         └─components
+    |         └─models
+    |         └─routes
+    |         └─services
+    |         └─styles
+    |         └─utils
+    |         └─template
+    |         index.js
+    |         router.js
+    |         index.css
+    │      .webpackrc.js 
+    │      .roadhogrc.mock.js     
+    │
+    ├─dd-server            
+    │      └─config
+    |         config.default.js
+    |         plugin.js
+    |      └─app
+    |         └─controller
+    |         └─extend
+    |         └─middleware
+    |         └─model
+    |         └─public
+    |         └─schedule
+    |         └─service
+    |         └─view
+    |         router.js
+    │      └─log
+    │      app.js
+    |      db.js
+    
+    
