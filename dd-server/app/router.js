@@ -16,6 +16,7 @@ module.exports = app => {
   router.post('/upload/user', controller.file.uploadUserHead);
   //文章
   router.resources('article', '/article', controller.article);
+  router.resources('markdown', '/markdown', controller.markdown);
   //文章类别
   router.resources('category', '/category', controller.category);
   //获取所有文章类别

@@ -31,15 +31,11 @@ function jsonParse(res) {
     return Promise.reject(res);
   }
   return res.json().then(result => {
-    if (result) {
-      if (result.isError) {
-        console.log('result.isError');
-        return Promise.reject(new Error(result.message));
-      } else {
-        return result.data;
-      }
+    if (result.errorMsg.length) {
+      return result;
+    } else {
+      return result.data;
     }
-    return null;
   });
 }
 
@@ -50,14 +46,19 @@ function jsonParse(res) {
  * @param  {object} [options]
  * @return {object}
  */
-function request(url, options) {
+function request(url, options, upload) {
   const opts = { ...options };
   opts.credentials = 'include';
-  opts.headers = {
-    ...opts.headers,
-    'Content-Type': 'application/json;charset=utf-8'
-  };
-
+  if (upload) {
+    opts.headers = {
+      ...opts.headers
+    };
+  } else {
+    opts.headers = {
+      ...opts.headers,
+      'Content-Type': 'application/json;charset=utf-8'
+    };
+  }
   return fetch(url, opts)
     .then(checkStatus)
     .then(check401)
@@ -65,6 +66,11 @@ function request(url, options) {
     .catch(err => {
       throw new Error(`${err.message}`, err.message || '错误');
     });
+}
+
+function upload(url, data = {}, options) {
+  console.log(data);
+  return request(url, { ...options, method: 'POST', body: data }, true);
 }
 
 /**
@@ -117,4 +123,4 @@ function get(url, data, options) {
   });
 }
 
-export { post, del, put, patch, get };
+export { post, del, put, patch, get, upload };

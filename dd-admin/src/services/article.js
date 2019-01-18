@@ -8,6 +8,10 @@ export async function create(params) {
   return post('/api/article', params);
 }
 
+export async function createmd(params) {
+  return post('/api/markdown', params);
+}
+
 export async function query(params) {
   return get('/api/article', params);
 }

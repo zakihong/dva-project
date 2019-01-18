@@ -1,0 +1,78 @@
+{
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "window.zoomLevel": 0,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "editor.detectIndentation": false,
+  "editor.fontSize": 12,
+  "editor.fontFamily": "Source Code Pro, Menlo,Monaco,Consolas,'Courier New'",
+  "editor.lineHeight": 20,
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": false,
+  "editor.trimAutoWhitespace": true,
+  "editor.renderIndentGuides": true,
+  "editor.insertSpaces": true,
+  "editor.autoIndent": false,
+  "html.format.indentInnerHtml": true,
+  "html.format.indentHandlebars": false,
+  "html.format.wrapLineLength": 100000,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+  "javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    }
+  ],
+  "eslint.options": {
+    "plugins": ["html"]
+  },
+  "emmet.syntaxProfiles": {
+    "vue-html": "html",
+    "vue": ["css", "html", "less"]
+  },
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "vetur.validation.template": false,
+  "vetur.format.styleInitialIndent": true,
+  "vetur.format.scriptInitialIndent": true,
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.useTabs": false,
+  "prettier.printWidth": 10000,
+  "prettier.trailingComma": "none",
+  "prettier.bracketSpacing": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact"
+  },
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+  "vue-ls.script.js.format.semi": true,
+  "vue-ls.script.ts.format.semi": true,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "brace_style": "collapse", // [collapse|expand|
+      "unformatted": ["area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr", "span"],
+      "wrap_attributes": "auto"
+    }
+  },
+  "git.enableSmartCommit": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false
+}

@@ -27,6 +27,10 @@ class ArticleService extends Service {
     return articles;
   }
 
+  //TODO: 根据ID获取某一篇文章详细信息接口
+
+  //TODO: 根据ID修改某一篇文章详细信息接口
+
   async addArticle({ title, descption, content, pic, categoryId, author }) {
     let article = await this.ctx.model.Article.create({
       id: this.ctx.helper.guid(),

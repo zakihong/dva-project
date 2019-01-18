@@ -1,0 +1,132 @@
+.zf-header {
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+  border-top: 3px solid #009a61;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  position: relative;
+  .nav {
+    height: 44px;
+    line-height: 44px;
+    padding: 0;
+  }
+  .menu {
+    margin: -1px 0 0 20px;
+    transition: opacity 0.25s;
+    .menu__item {
+      position: relative;
+      padding: 0;
+      margin: 0 0 0 2px;
+      vertical-align: middle;
+      line-height: 34px;
+      color: #666;
+      &:first-child {
+        margin: 0;
+      }
+      a {
+        display: inline-block;
+        padding: 0 12px;
+        height: 34px;
+        color: #757575;
+        font-weight: 500;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        &:link {
+          background: transparent;
+        }
+        &:hover {
+          background-color: #f3f3f3;
+        }
+        &.active-nav {
+          color: #009a61;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .opts {
+    display: inline-block;
+    margin: 0;
+    &-item {
+      position: relative;
+      padding: 0 5px;
+      margin: 0 5px;
+      vertical-align: middle;
+      line-height: 34px;
+      color: #666;
+    }
+  }
+}
+
+.zf-header__logo {
+  margin: 0;
+}
+.header-response {
+  .zf-search {
+    float: left;
+    padding: 7px 13px;
+    color: #757575;
+  }
+  .opts {
+    float: right;
+    &-item {
+      display: inline-block;
+      margin-top: 0;
+      height: 34px;
+    }
+  }
+}
+
+.zf-header__logo--response {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  a {
+    height: 33px;
+    background-size: 140px auto;
+  }
+}
+
+.zf-header__logo h1 {
+  margin: 0;
+  line-height: 64px;
+  a {
+    float: left;
+    display: block;
+    width: 150px;
+    height: 44px;
+    background: url(assets/zf.png) no-repeat left center;
+    background-size: auto 27px;
+    text-indent: 110%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-transform: capitalize;
+  }
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 49px;
+  line-height: 49px;
+  background-color: #fafafa;
+  box-shadow: 0 -1px rgba(0, 0, 0, 0.1), 0 -2px 10px rgba(0, 0, 0, 0.1);
+  .opts {
+    display: inline-block;
+    margin: 0;
+    width: 100%;
+    .opts-group {
+      position: relative;
+      display: inline-block;
+      padding-top: 6px;
+      line-height: 20px;
+      color: #9e9e9e;
+      width: 20%;
+      cursor: pointer;
+    }
+  }
+}

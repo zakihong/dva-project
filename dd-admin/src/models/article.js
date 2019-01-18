@@ -1,7 +1,7 @@
 import { EditorState } from 'draft-js';
 import { routerRedux } from 'dva/router';
 import { message } from 'antd';
-import { create, query, delArticle, uploadArticleImg } from 'services/article';
+import { create, createmd, query, delArticle, uploadArticleImg } from 'services/article';
 import { queryCategorys } from 'services/category';
 
 export default {
@@ -82,6 +82,19 @@ export default {
         author: app.user.id
       };
       const data = yield call(create, article);
+      if (data.errorMsg) {
+        message.error(data.errorMsg);
+      } else {
+        yield put(routerRedux.push('/article/list'));
+      }
+    },
+    *addmd({ payload }, { call, put, select }) {
+      const app = yield select(state => state.app);
+      const md = {
+        ...payload.data,
+        author: app.user.id
+      };
+      const data = yield call(createmd, md);
       if (data.errorMsg) {
         message.error(data.errorMsg);
       } else {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Input, Button, Table, Popconfirm } from 'antd';
+import { Input, Button, Table, Popconfirm, Row, Col } from 'antd';
 
 import styles from './index.less';
 const Search = Input.Search;
@@ -24,11 +24,6 @@ function Article({ dispatch, list, loading, total, page, title, selectedRowKeys 
       title: '类别',
       key: 'category.name',
       dataIndex: 'category.name'
-    },
-    {
-      title: '简述',
-      key: 'descption',
-      dataIndex: 'descption'
     },
     {
       title: '操作',
@@ -60,20 +55,42 @@ function Article({ dispatch, list, loading, total, page, title, selectedRowKeys 
   };
 
   return (
-    <div className={styles['article']}>
-      <div className={styles['article-header']}>
-        <Search placeholder="文章名" onSearch={onSearch} style={{ width: 200, float: 'left' }} />
-        <Button type="primary" style={{ float: 'right' }}>
-          <Link to="/article/create">添加</Link>
-        </Button>
-        <Button type="primary" style={{ float: 'right', marginRight: 5 }} onClick={publish} disabled={selectedRowKeys.length <= 0} loading={loading}>
-          发布
-        </Button>
-      </div>
-      <div className={styles['article-table']}>
-        <Table rowSelection={rowSelection} columns={columns} loading={loading} dataSource={list} rowKey={record => record.id} pagination={{ current: page, total: total, onChange: onPageChange }} />
-      </div>
-    </div>
+    <Row>
+      <Col span={12}>
+        <div className={styles['article']}>
+          <div className={styles['article-header']}>
+            <Search placeholder="文章名" onSearch={onSearch} style={{ width: 200, float: 'left' }} />
+            <Button type="primary" style={{ float: 'right' }}>
+              <Link to="/article/create">添加</Link>
+            </Button>
+
+            <Button type="primary" style={{ float: 'right', marginRight: 5 }} onClick={publish} disabled={selectedRowKeys.length <= 0} loading={loading}>
+              发布
+            </Button>
+          </div>
+          <div className={styles['article-table']}>
+            <Table rowSelection={rowSelection} columns={columns} loading={loading} dataSource={list} rowKey={record => record.id} pagination={{ current: page, total: total, onChange: onPageChange }} />
+          </div>
+        </div>
+      </Col>
+      <Col span={12}>
+        <div className={styles['article']}>
+          <div className={styles['article-header']}>
+            <Search placeholder="文章名" onSearch={onSearch} style={{ width: 200, float: 'left' }} />
+
+            <Button type="primary" style={{ float: 'right', marginRight: 5 }}>
+              <Link to="/article/markdown">添加markdown</Link>
+            </Button>
+            <Button type="primary" style={{ float: 'right', marginRight: 5 }} onClick={publish} disabled={selectedRowKeys.length <= 0} loading={loading}>
+              发布
+            </Button>
+          </div>
+          <div className={styles['article-table']}>
+            <Table rowSelection={rowSelection} columns={columns} loading={loading} dataSource={list} rowKey={record => record.id} pagination={{ current: page, total: total, onChange: onPageChange }} />
+          </div>
+        </div>
+      </Col>
+    </Row>
   );
 }
 

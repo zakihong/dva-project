@@ -41,6 +41,11 @@ const Routers = function({ history, app }) {
       component: () => require('./routes/article/create')
     },
     {
+      path: '/article/markdown',
+      models: () => [require('./models/article')],
+      component: () => require('./routes/article/markdown')
+    },
+    {
       path: '/article/category',
       models: () => [require('./models/category')],
       component: () => require('./routes/article/category')

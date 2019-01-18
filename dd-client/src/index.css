@@ -19,7 +19,7 @@ a {
 
 body {
   font: 14px/20px 'Microsoft Yahei';
-  overflow-y: scroll;
+  overflow: auto;
 }
 h1,
 h2,

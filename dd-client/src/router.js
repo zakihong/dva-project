@@ -1,35 +1,59 @@
 import React from 'react';
-import { Router, Route } from 'dva/router';
+import PropTypes from 'prop-types';
+import NProgress from 'nprogress';
+import { routerRedux, Route, Switch } from 'dva/router';
 import dynamic from 'dva/dynamic';
-import Authorized from 'components/Authorized';
-function RouterConfig({ history, app }) {
-  const Home = dynamic({
-    app,
-    models: () => [import('./models/index')],
-    component: () => import('./routes/Home')
-  });
+import App from './routes/app';
+const { ConnectedRouter } = routerRedux;
+
+const Routers = function({ history, app }) {
+  NProgress.start();
+
   const Login = dynamic({
     app,
-    models: () => [import('./models/login')],
-    component: () => import('./routes/Login')
+    component: () => require('./routes/Login')
   });
 
   const Register = dynamic({
     app,
-    models: () => [import('./models/login')],
-    component: () => import('./routes/Register')
+    component: () => require('./routes/Register')
   });
 
+  const routes = [
+    {
+      path: '/home',
+      models: () => [require('./models/home')],
+      component: () => require('./routes/Home')
+    }
+  ];
   return (
-    <Router history={history}>
-      <div>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/" component={Home} />
-        <Authorized name="home" path="/home" component={Home} />
-      </div>
-    </Router>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <App>
+          <Switch>
+            {routes.map(({ path, ...dynamics }, key) => (
+              <Route
+                key={key}
+                exact
+                path={path}
+                component={dynamic({
+                  app,
+                  ...dynamics
+                })}
+              />
+            ))}
+          </Switch>
+        </App>
+      </Switch>
+    </ConnectedRouter>
   );
-}
+};
 
-export default RouterConfig;
+Routers.propTypes = {
+  history: PropTypes.object,
+  app: PropTypes.object
+};
+
+export default Routers;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import draftToHtml from 'draftjs-to-html';
 import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import { Form, Input, Select, Icon, Upload, Modal, Button } from 'antd';
+import { Form, Input, Select, Icon, Upload, Modal, Button, Radio } from 'antd';
 
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styles from './index.less';
@@ -136,6 +136,14 @@ const CreateForm = ({ onOk, onEditorChange, onUploadChange, categorys, imageUrl,
           </Select>
         )}
       </FormItem>
+      <Form.Item {...formSelectMiddle} label="文章标签">
+        {getFieldDecorator('status')(
+          <Radio.Group>
+            <Radio value="3">推荐</Radio>
+            <Radio value="4">热门</Radio>
+          </Radio.Group>
+        )}
+      </Form.Item>
       <FormItem {...formSelectMiddle} label="文章缩略图" hasFeedback>
         {getFieldDecorator('pic', { rules: [{ required: false, message: '请上传展示图片' }] })(
           <div className="clearfix">

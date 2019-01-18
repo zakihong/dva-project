@@ -5,6 +5,7 @@ import styles from './HomeContainer.less';
 import iconmonstr from 'assets/iconmonstr.svg';
 import gameover from 'assets/gameover.jpg';
 import aikeji from 'assets/aikeji.png';
+import { Row } from 'antd';
 function WeekChosen() {
   return (
     <div className={styles['week-choose']}>

@@ -1,0 +1,32 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/lib/style/v2-compatible-reset.less';
+
+@menu-prefix-cls: ~'@{ant-prefix}-menu';
+@dropdown-prefix-cls: ~'@{ant-prefix}-dropdown';
+@layout-prefix-cls: ~'@{ant-prefix}-layout';
+@calendar-prefix-cls: ~'@{ant-prefix}-calendar';
+
+html,
+body,
+:global(#root) {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  font-family: PingFang SC, Lantinghei SC, Helvetica Neue, Helvetica, Arial, Microsoft YaHei, WenQuanYi Zen Hei, WenQuanYi Micro Hei, 'sans-serif';
+}
+
+.layout-header-padding(@font-size-base) {
+  padding: (@layout-content-header-height - ((@font-size-base + 4) * 1.5 + 1)) / 2 @gutter-base * 3;
+}
+
+.layout-header() {
+  .layout-header-padding(@font-size-base);
+
+  border-bottom: 1px solid @border-color-split;
+  //font-size: @font-size-base + 4;
+  line-height: 1.5;
+  color: @primary-color;
+  z-index: 3;
+  height: @gutter-base * 8;
+}

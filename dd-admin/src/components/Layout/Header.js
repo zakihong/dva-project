@@ -30,7 +30,7 @@ const Header = ({ topMenus, user, logout }) => {
   return (
     <Layout.Header className={styles.header}>
       <div className={styles.logo} id="logo">
-        <Link to="/">
+        <Link to="/dashboard">
           <img src={config.logoSrc} alt={config.logoSrc} />
         </Link>
       </div>

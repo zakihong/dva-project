@@ -1,6 +1,10 @@
 import React from 'react';
 import { Icon } from 'antd';
 import styles from './HomeContainer.less';
+import { Layout } from 'components';
+import classNames from 'classnames';
+
+const { layout } = Layout;
 function NewsList() {
   const newsList = () => {
     return [
@@ -24,14 +28,6 @@ function NewsList() {
       {
         author: '洪小呆',
         title: '自媒体整治的靶子应该指向哪里？'
-      },
-      {
-        author: '王小萌',
-        title: '绝不能放任狗主人嚣张跋扈打人的底气'
-      },
-      {
-        author: '王小萌',
-        title: '绝不能放任狗主人嚣张跋扈打人的底气'
       },
       {
         author: '王小萌',
@@ -67,7 +63,7 @@ function NewsList() {
               <div className={styles.news}>
                 <span className={styles['author']}>{Item.author}</span>
                 <span className={styles['title']}>{Item.title}</span>
-                <span className={styles['time']}>2018-11-01 08:20</span>
+                <span className={classNames(layout['hidden-xs'], layout['hidden-sm'], styles['time'])}>2018-11-01 08:20</span>
               </div>
             </li>
           );

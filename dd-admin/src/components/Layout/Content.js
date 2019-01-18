@@ -44,7 +44,7 @@ const Content = ({ children, currentMenu, menus, location }) => {
         <h3 className="content-title">
           <Breadcrumb>
             <Breadcrumb.Item>
-              <Link to="/">
+              <Link to="/dashboard">
                 <Icon type="home" />
                 <span>主页</span>
               </Link>

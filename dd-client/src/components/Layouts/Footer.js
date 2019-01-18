@@ -1,6 +1,7 @@
 import React from 'react';
-
-import styles from './layout.less';
+import classNames from 'classnames';
+import styles from './Footer.less';
+import layout from './Layout.less';
 function Footer() {
   const links = () => {
     return [
@@ -83,18 +84,8 @@ function Footer() {
     ];
   };
   return (
-    <div className={styles.footer}>
-      <div className={styles.links}>
-        <div className={styles.title}>友情链接:</div>
-        {links().map((item, i) => {
-          return (
-            <a key={i} className={styles.link} href={item.url}>
-              {item.title}
-            </a>
-          );
-        })}
-      </div>
-      <div className={styles['footer-warp']}>关于人师 | 广告服务 | 天涯客服 | 隐私和版权 | 联系我们 | 加入天涯 | 侵权投诉</div>
+    <div className={classNames(styles['zf-footer'])}>
+      <div className={styles['footer-warp']}>关于知否 | 广告服务 | 联系我们 | 侵权投诉</div>
     </div>
   );
 }

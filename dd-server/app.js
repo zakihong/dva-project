@@ -19,9 +19,14 @@ module.exports = app => {
     const Article = app.model.Article;
     const Category = app.model.Category;
     const User = app.model.User;
+    const Markdown = app.model.Markdown;
     app.beforeStart(async () => {
       Article.belongsTo(User, { as: 'user', foreignKey: 'author' });
       Article.belongsTo(Category, { as: 'category', foreignKey: 'categoryId' });
+      await app.model.sync();
+    });
+    app.beforeStart(async () => {
+      Markdown.belongsTo(Category, { as: 'category', foreignKey: 'categoryId' });
       await app.model.sync();
     });
   });
